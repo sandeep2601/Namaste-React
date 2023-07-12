@@ -29,8 +29,12 @@
         const root = ReactDOM.createRoot(document.getElementById("root"));
         root.render(heading);
     </script> -->
-
-    <div id="root"></div>
+    <div>This is above the root div, and will not be replaced by render()</div>
+    <div id="root">
+        <h1>This will be replaced by the root.render() method.</h1>
+        <p>And as we make this div as our root element in react, so the render will always use this element to put it to DOM</p>
+    </div>
+    <div>This is below the root div, and will not be replaced by render()</div>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="App.js"></script>
