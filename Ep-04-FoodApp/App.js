@@ -3,9 +3,12 @@ import ReactDOM from "react-dom/client";
 
 const Header = () => {
   return (
-    <div className="container">
-      <div className="logo">
-        <img src="https://i.pinimg.com/originals/d2/82/c8/d282c8b0f4af7e8354081882ea4ae191.png" />
+    <div className="header">
+      <div className="logo-container">
+        <img
+          className="logo"
+          src="https://png.pngtree.com/element_our/png_detail/20180913/food-point-logo-design-spoon-fork-and-pin-sign-logo-png_94919.jpg"
+        />
       </div>
       <div className="nav-items">
         <ul>
