@@ -4,6 +4,8 @@
   "description": "Learn from the course \"Namaste React\" and practicing it here",
   "main": "App.js",
   "scripts": {
+    "start": "parcel Ep-03-Laying_the_foundation/index.html",
+    "build": "parcel build Ep-03-Laying_the_foundation/index.html",
     "test": "jest"
   },
   "repository": {
