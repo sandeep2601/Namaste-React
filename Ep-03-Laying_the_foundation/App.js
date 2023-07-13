@@ -25,6 +25,8 @@ const HeadingComponent = () => (
   <div id="container">
     {/* Component Composition => Using a react compoenet into another react component */}
     <TitleComponent />
+    <TitleComponent></TitleComponent>
+    {TitleComponent()}
     <h1 className="heading">Namaste React Functional Component</h1>
   </div>
 );
@@ -33,5 +35,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // root.render(jsxHeading);
 // render only accept react element as argument, so in case of react component,
-// we need to wrap it in angular brackets.
+// we need to wrap it in angular brackets, or if it is an functional component,
+// then can be used with ().
+// root.render(HeadingComponent());
 root.render(<HeadingComponent />);
