@@ -1,5 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// Earlier ReactDOM was imported from "react-dom", but now it gives Warning: You are importing createRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".
+// So, to remove the warning we need to import it from "react-dom/client"
+import ReactDOM from "react-dom/client";
 
 const heading = React.createElement(
   "h1",
