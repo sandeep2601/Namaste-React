@@ -14,8 +14,17 @@ const jsxHeading = (
 );
 
 // React Functional Component
+const TitleComponent = () => (
+  <h1 id="heading" className="head">
+    Namaste React using JSX
+  </h1>
+);
+
+// React Functional Component
 const HeadingComponent = () => (
   <div id="container">
+    {/* Component Composition => Using a react compoenet into another react component */}
+    <TitleComponent />
     <h1 className="heading">Namaste React Functional Component</h1>
   </div>
 );
