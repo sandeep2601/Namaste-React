@@ -38,6 +38,9 @@
     <!-- Removed the React CDN links asit is not a good practice, and installed the React packages -->
     <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
-    <script src="App.js"></script>
+
+    <!-- Added type="module" to remove the Error: @parcel/transformer-js: Browser scripts cannot have imports or exports.-->
+    <!-- As normal browser file do not contain import or export statements, so we marked this file as module file. -->
+    <script type="module" src="App.js"></script>
 </body>
 </html>
