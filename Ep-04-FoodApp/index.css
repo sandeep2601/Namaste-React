@@ -18,3 +18,29 @@
     margin: 5px 15px;
     font-size: 24px;
 }
+
+.search {
+    margin: 10px;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.res-card {
+    width: 200px;
+    height: 300px;
+    background-color: bisque;
+    padding: 5px;
+    margin: 5px;
+}
+
+.res-card:hover {
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.res-logo {
+    width: 100%;
+}
