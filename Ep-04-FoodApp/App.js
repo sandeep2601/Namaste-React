@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import restaurants from "./restaurants.json";
 
 const Header = () => {
   return (
@@ -22,18 +23,23 @@ const Header = () => {
   );
 };
 
-const RestaurantCard = () => {
+const RestaurantCard = ({ restaurantData }) => {
+  console.log(restaurantData);
+  const { name, cloudinaryImageId, cuisines, avgRating, sla } = restaurantData;
   return (
     <div className="res-card">
       <img
         className="res-logo"
         alt="restaurant logo"
-        src="https://1000logos.net/wp-content/uploads/2023/04/Dominos-logo.png"
+        src={
+          "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
+          cloudinaryImageId
+        }
       />
-      <h2>Dominos</h2>
-      <h4>Italian, Asian</h4>
-      <h4>4.4 stars</h4>
-      <h4>30 minutes</h4>
+      <h2>{name}</h2>
+      <h4>{cuisines.join(", ")}</h4>
+      <h4>{avgRating} stars</h4>
+      <h4>{sla.deliveryTime} minutes</h4>
     </div>
   );
 };
@@ -43,12 +49,16 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
-        <RestaurantCard />
+        <RestaurantCard restaurantData={restaurants[0].info} />
+        <RestaurantCard restaurantData={restaurants[1].info} />
+        <RestaurantCard restaurantData={restaurants[2].info} />
+        <RestaurantCard restaurantData={restaurants[3].info} />
+        <RestaurantCard restaurantData={restaurants[4].info} />
+        <RestaurantCard restaurantData={restaurants[5].info} />
+        <RestaurantCard restaurantData={restaurants[6].info} />
+        <RestaurantCard restaurantData={restaurants[7].info} />
+        <RestaurantCard restaurantData={restaurants[8].info} />
+        <RestaurantCard restaurantData={restaurants[9].info} />
       </div>
     </div>
   );
