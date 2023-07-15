@@ -60,3 +60,11 @@
     margin: 10px;
     background-color: bisque;
 }
+
+.search-filter {
+    display: flex;
+}
+
+.search-btn {
+    margin-left: 5px;
+}
