@@ -6,6 +6,7 @@ import Shimmer from "./Shimmer";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -14,10 +15,11 @@ const Body = () => {
   const fetchData = async () => {
     const response = await fetch(SWIGGY_API_URL);
     const result = await response.json();
-    setListOfRestaurants(
+    const restaurantData =
       result?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
+        ?.restaurants;
+    setListOfRestaurants(restaurantData);
+    setFilteredRestaurants(restaurantData);
   };
 
   if (listOfRestaurants.length === 0) {
@@ -43,7 +45,7 @@ const Body = () => {
                     .toLowerCase()
                     .includes(searchText.toLowerCase())
               );
-              setListOfRestaurants(filteredRestaurants);
+              setFilteredRestaurants(filteredRestaurants);
             }}
           >
             Search
@@ -62,7 +64,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
+        {filteredRestaurants.map((restaurant) => (
           <RestaurantCard
             key={restaurant.info.id}
             restaurantData={restaurant.info}
