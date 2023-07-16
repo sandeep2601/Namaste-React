@@ -6,3 +6,6 @@ export const APP_LOGO_URL =
 
 export const SWIGGY_API_URL =
   "https://www.swiggy.com/api/seo/getListing?lat=28.67003492726483&lng=77.11469986756225";
+
+export const MENU_API =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.67003492726483&lng=77.11469986756225&restaurantId=";
