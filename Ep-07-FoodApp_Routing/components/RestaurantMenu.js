@@ -17,10 +17,17 @@ const RestaurantMenu = () => {
     const data = [];
     // data.push(`restaurantData: ${result?.data?.cards[0]?.card?.card?.info}`);
     data.push(result?.data?.cards[0]?.card?.card?.info);
-    data.push(
-      result?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
-        ?.card?.itemCards
-    );
+
+    const filteredArray =
+      result?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+        (data, index) => {
+          if (index != 0 && data?.card?.card?.title == "Recommended") {
+            return data;
+          }
+        }
+      );
+
+    data.push(filteredArray[0]?.card?.card?.itemCards);
     setRestaurantMenu(data);
   };
 
@@ -55,7 +62,7 @@ const RestaurantMenu = () => {
           </th>
         </thead>
         <tbody>
-          {restaurantMenu[1].map((item) => {
+          {restaurantMenu[1]?.map((item) => {
             return (
               <tr key={item.card.info.id}>
                 <td>{item.card.info.name}</td>

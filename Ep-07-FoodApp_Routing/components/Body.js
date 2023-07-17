@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { SWIGGY_API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -65,10 +66,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard
+          <Link
             key={restaurant.info.id}
-            restaurantData={restaurant.info}
-          />
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            <RestaurantCard restaurantData={restaurant.info} />
+          </Link>
         ))}
       </div>
     </div>
