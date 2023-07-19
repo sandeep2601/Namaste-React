@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export class UserClass extends Component {
   constructor(props) {
     super(props);
-    console.log("Child constructor");
+    console.log(this.props.name + " constructor");
 
     this.state = {
       count1: 0,
@@ -12,11 +12,11 @@ export class UserClass extends Component {
   }
 
   componentDidMount() {
-    console.log("Child componentDidMount");
+    console.log(this.props.name + " componentDidMount");
   }
 
   render() {
-    console.log("Child render");
+    console.log(this.props.name + " render");
     const { name, location } = this.props;
     const { count1, count2 } = this.state;
     return (
