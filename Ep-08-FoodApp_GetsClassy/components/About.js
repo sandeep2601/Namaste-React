@@ -6,10 +6,28 @@ class About extends Component {
   constructor(props) {
     console.log("Parent constructor");
     super(props);
+    this.state = {
+      name: "Demo",
+      location: "Demo",
+    };
   }
 
-  componentDidMount() {
-    console.log("Parent componentDidMount");
+  async componentDidMount() {
+    const response = await fetch("https://api.github.com/users/sandeep2601");
+    const data = await response.json();
+    this.setState({
+      name: data.name,
+      location: data.location,
+    });
+    console.log("Parent componentDidMount", data);
+  }
+
+  componentDidUpdate() {
+    console.log("Parent componentDidUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log("Parent componentWillUnmount");
   }
 
   render() {
@@ -18,7 +36,10 @@ class About extends Component {
       <>
         <div>About Us Page</div>
         {/* <User name="Sandeep Verma" location="New Delhi" /> */}
-        <UserClass name="Child 1" location="New Delhi" />
+        <UserClass
+          name={"Child 1 " + this.state.name}
+          location={this.state.location}
+        />
         <UserClass name="Child 2" location="New Delhi" />
         <UserClass name="Child 3" location="New Delhi" />
       </>
