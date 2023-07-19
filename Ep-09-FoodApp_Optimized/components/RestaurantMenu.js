@@ -1,46 +1,34 @@
 import React, { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { MENU_API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
-  const [restaurantMenu, setRestaurantMenu] = useState(null);
   const { restaurantId } = useParams();
+  const restaurantInfo = useRestaurantMenu(restaurantId);
 
-  useEffect(() => {
-    fetchMenuData();
-  }, []);
+  if (restaurantInfo === null) return <Shimmer />;
 
-  const fetchMenuData = async () => {
-    const response = await fetch(MENU_API + restaurantId);
-    const result = await response.json();
-    const data = [];
-    // data.push(`restaurantData: ${result?.data?.cards[0]?.card?.card?.info}`);
-    data.push(result?.data?.cards[0]?.card?.card?.info);
+  const { name, cuisines, costForTwoMessage } =
+    restaurantInfo?.cards[0]?.card?.card?.info;
 
-    const filteredArray =
-      result?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-        (data, index) => {
-          if (index != 0 && data?.card?.card?.title == "Recommended") {
-            return data;
-          }
+  const { itemCards } =
+    restaurantInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (data, index) => {
+        if (index != 0 && data?.card?.card?.title == "Recommended") {
+          return data;
         }
-      );
+      }
+    )[0]?.card?.card;
 
-    data.push(filteredArray[0]?.card?.card?.itemCards);
-    setRestaurantMenu(data);
-  };
-
-  return restaurantMenu === null ? (
-    <Shimmer />
-  ) : (
+  return (
     <div>
-      <h1>{restaurantMenu[0].name}</h1>
-      <h3>{restaurantMenu[0].cuisines.join(", ")}</h3>
-      <h3>{restaurantMenu[0].costForTwoMessage}</h3>
+      <h1>{name}</h1>
+      <h3>{cuisines.join(", ")}</h3>
+      <h3>{costForTwoMessage}</h3>
       <h1>Menu:</h1>
       {/* <ul>
-        {restaurantMenu[1].map((item) => {
+        {itemCards.map((item) => {
           return (
             <li key={item.card.info.id}>
               {item.card.info.name}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -62,7 +50,7 @@ const RestaurantMenu = () => {
           </th>
         </thead>
         <tbody>
-          {restaurantMenu[1]?.map((item) => {
+          {itemCards?.map((item) => {
             return (
               <tr key={item.card.info.id}>
                 <td>{item.card.info.name}</td>
