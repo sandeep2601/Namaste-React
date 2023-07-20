@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { SWIGGY_API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchData();
@@ -22,6 +24,13 @@ const Body = () => {
     setListOfRestaurants(restaurantData);
     setFilteredRestaurants(restaurantData);
   };
+
+  if (onlineStatus === false)
+    return (
+      <h1>
+        Looks like you are offline, please check your internet connection...
+      </h1>
+    );
 
   if (listOfRestaurants.length === 0) {
     return <Shimmer />;
