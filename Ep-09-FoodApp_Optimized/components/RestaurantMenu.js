@@ -42,12 +42,10 @@ const RestaurantMenu = () => {
 
       <table>
         <thead>
-          <th>
-            <tr>
-              <td>Recipies</td>
-              <td>Cost</td>
-            </tr>
-          </th>
+          <tr>
+            <th>Recipies</th>
+            <th>Cost</th>
+          </tr>
         </thead>
         <tbody>
           {itemCards?.map((item) => {
