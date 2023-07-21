@@ -20,8 +20,9 @@ export class UserClass extends Component {
     const { name, location } = this.props;
     const { count1, count2 } = this.state;
     return (
-      <div className="user-card">
+      <div className="border border-solid p-1 m-2">
         <button
+          className="m-2 px-4 border border-solid rounded-md bg-lime-200"
           onClick={() => {
             this.setState({
               count1: this.state.count1 + 1,

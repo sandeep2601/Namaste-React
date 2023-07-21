@@ -5,8 +5,9 @@ const User = (params) => {
   const [count2, setCount2] = useState(1);
 
   return (
-    <div className="user-card">
+    <div className="border border-solid p-1 m-1">
       <button
+        className="m-2 px-4 border border-solid rounded-md bg-lime-200"
         onClick={() => {
           setCount1(count1 + 1);
           setCount2(count2 + 1);
