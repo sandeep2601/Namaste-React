@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { SWIGGY_API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
@@ -10,6 +10,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const onlineStatus = useOnlineStatus();
+
+  const PromotedRestaurantCard = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -79,7 +81,11 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            <RestaurantCard restaurantData={restaurant.info} />
+            {restaurant.info.isOpen ? (
+              <PromotedRestaurantCard restaurantData={restaurant.info} />
+            ) : (
+              <RestaurantCard restaurantData={restaurant.info} />
+            )}
           </Link>
         ))}
       </div>
