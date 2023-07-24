@@ -1,7 +1,6 @@
 import { CDN_RESTAURANT_LOGO_URL } from "../utils/constants";
 
 const ItemList = ({ data }) => {
-  console.log("data", data);
   return (
     <div>
       {data?.map((item) => (
@@ -17,7 +16,7 @@ const ItemList = ({ data }) => {
               {item?.card?.info?.price / 100 ||
                 item?.card?.info?.defaultPrice / 100}
             </span>
-            <p className="text-xs">{item?.card?.info?.description}</p>
+            <p className="text-sm">{item?.card?.info?.description}</p>
           </div>
           <div className="w-3/12 p-4 relative">
             <img

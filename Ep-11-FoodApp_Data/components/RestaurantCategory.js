@@ -1,10 +1,8 @@
-import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data }) => {
-  const [isVisible, setIsVisible] = useState(false);
+const RestaurantCategory = ({ data, showIndex, setShowIndex }) => {
   const handleClick = () => {
-    setIsVisible(!isVisible);
+    setShowIndex();
   };
 
   return (
@@ -18,7 +16,7 @@ const RestaurantCategory = ({ data }) => {
         </span>
         <span>🔻</span>
       </div>
-      {isVisible && <ItemList data={data?.itemCards} />}
+      {showIndex && <ItemList data={data?.itemCards} />}
     </div>
   );
 };
