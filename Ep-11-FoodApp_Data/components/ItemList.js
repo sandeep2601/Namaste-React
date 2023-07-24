@@ -19,11 +19,15 @@ const ItemList = ({ data }) => {
             </span>
             <p className="text-xs">{item?.card?.info?.description}</p>
           </div>
-          <div className="w-3/12 p-4">
+          <div className="w-3/12 p-4 relative">
             <img
+              className="w-full h-auto"
               src={CDN_RESTAURANT_LOGO_URL + item?.card?.info?.imageId}
               alt="Receipe Image"
             />
+            <button className="bg-slate-400 hover:bg-slate-600 absolute top-3/4 left-2/4 p-1 rounded-lg">
+              Add +
+            </button>
           </div>
         </div>
       ))}
