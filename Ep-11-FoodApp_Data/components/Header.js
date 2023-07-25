@@ -1,9 +1,12 @@
 import { APP_LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 export const Header = () => {
   const onlineStatus = useOnlineStatus();
+  const user = useContext(UserContext);
   return (
     <div className="flex justify-between border border-solid h-24 bg-orange-100">
       <div className="h-full">
@@ -24,6 +27,7 @@ export const Header = () => {
           <li className="p-4">
             <Link to="/cart">Cart</Link>
           </li>
+          <li className="p-4 font-bold">{user.loggedInUser}</li>
         </ul>
       </div>
     </div>
