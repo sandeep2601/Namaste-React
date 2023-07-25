@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { Header } from "./components/Header";
 import Body from "./components/Body";
@@ -11,10 +11,11 @@ import UserContext from "./utils/UserContext";
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+  const [loggedUser, setLoggedUser] = useState("Sandeep Verma");
   return (
-    <UserContext.Provider value={{ loggedInUser: "Sandeep Verma" }}>
+    <UserContext.Provider value={{ loggedInUser: loggedUser, setLoggedUser }}>
       <div>
-        <UserContext.Provider value={{ loggedInUser: "HeaderUser" }}>
+        <UserContext.Provider value={{ loggedInUser: loggedUser }}>
           <Header />
         </UserContext.Provider>
         <Outlet />

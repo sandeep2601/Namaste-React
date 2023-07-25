@@ -1,9 +1,10 @@
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SWIGGY_API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -26,6 +27,8 @@ const Body = () => {
     setListOfRestaurants(restaurantData);
     setFilteredRestaurants(restaurantData);
   };
+
+  const { loggedInUser, setLoggedUser } = useContext(UserContext);
 
   if (onlineStatus === false)
     return (
@@ -74,6 +77,15 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        <div className="m-2 px-4">
+          Change LoggedIn User Name: &nbsp;
+          <input
+            className="border border-solid pl-1"
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => setLoggedUser(e.target.value)}
+          />
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => (
