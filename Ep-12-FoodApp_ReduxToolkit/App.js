@@ -7,20 +7,24 @@ import Contact from "./components/Contact";
 import NotFound from "./components/NotFound";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   const [loggedUser, setLoggedUser] = useState("Sandeep Verma");
   return (
-    <UserContext.Provider value={{ loggedInUser: loggedUser, setLoggedUser }}>
-      <div>
-        <UserContext.Provider value={{ loggedInUser: loggedUser }}>
-          <Header />
-        </UserContext.Provider>
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: loggedUser, setLoggedUser }}>
+        <div>
+          <UserContext.Provider value={{ loggedInUser: loggedUser }}>
+            <Header />
+          </UserContext.Provider>
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
